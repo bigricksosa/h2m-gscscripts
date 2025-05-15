@@ -20,6 +20,7 @@ restrictWeapons()
 		   	(
 				isSubStr(weapon, "at4_mp") ||
                 isSubStr(weapon, "javelin_mp") ||
+				isSubStr(weapon, "h2_m320_mp") ||
                 isSubStr(weapon, "h2_rpg_mp") ||
                 isSubStr(weapon, "h2_m79_mp")
 			)

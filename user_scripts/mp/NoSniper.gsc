@@ -22,6 +22,8 @@ restrictWeapons()
 				isSubStr(weapon, "barrett") ||
 				isSubStr(weapon, "wa2000") ||
 				isSubStr(weapon, "m21") ||
+				isSubStr(weapon, "as50") ||
+				isSubStr(weapon, "msr") ||
 				isSubStr(weapon, "m40a3")
 			)
 		)
