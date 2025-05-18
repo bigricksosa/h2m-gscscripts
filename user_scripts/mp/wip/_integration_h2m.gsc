@@ -13,7 +13,7 @@ Setup()
     waittillframeend;
     
     level waittill( level.notifyTypes.sharedFunctionsInitialized );
-    level.eventBus.gamename = "h2m";    
+    level.eventBus.gamename = "H2M";    
     user_scripts\mp\_integration_base::RegisterLogger( ::Log2Console );
     
     level.overrideMethods[level.commonFunctions.getTotalShotsFired]      = ::GetTotalShotsFired;
