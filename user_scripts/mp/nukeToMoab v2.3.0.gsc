@@ -15,12 +15,28 @@
 init()
 {
     // MW3 map detection
-    mw3Maps = ["mp_alpha", "mp_bootleg", "mp_bravo", "mp_dome", 
-               "mp_hardhat", "mp_lambeth", "mp_paris", "mp_underground"];
-    
-    currentMap = getDvar("mapname");
-    level.isMW3Map = mw3Maps.size > 0 && isDefined(mw3Maps[mw3Maps.indexOf(currentMap)]);
+    mw3Maps = [];
+    mw3Maps[mw3Maps.size] = "mp_alpha";
+    mw3Maps[mw3Maps.size] = "mp_bootleg";
+    mw3Maps[mw3Maps.size] = "mp_bravo";
+    mw3Maps[mw3Maps.size] = "mp_dome";
+    mw3Maps[mw3Maps.size] = "mp_hardhat";
+    mw3Maps[mw3Maps.size] = "mp_lambeth";
+    mw3Maps[mw3Maps.size] = "mp_paris";
+    mw3Maps[mw3Maps.size] = "mp_underground";
 
+    currentMap = getDvar("mapname");
+    level.isMW3Map = false;
+    
+    // Proper GSC array checking
+    for(i = 0; i < mw3Maps.size; i++)
+    {
+        if(mw3Maps[i] == currentMap)
+        {
+            level.isMW3Map = true;
+            break;
+        }
+    }
     // Store original functions before replacing
     level.original = spawnStruct();
     level.original.nukeDeath = maps\mp\h2_killstreaks\_nuke::nukeDeath;
@@ -28,7 +44,7 @@ init()
     level.original.nukeEffects = maps\mp\h2_killstreaks\_nuke::nukeEffects;
     level.original.doNuke = maps\mp\h2_killstreaks\_nuke::doNuke;
 
-    // Replace functions with our custom versions
+    // Replace functions with custom versions
     replaceFunc(maps\mp\h2_killstreaks\_nuke::nukeDeath, ::customNukeDeath);
     replaceFunc(maps\mp\h2_killstreaks\_nuke::cancelNukeOnDeath, ::customCancelNuke);
     replaceFunc(maps\mp\h2_killstreaks\_nuke::nukeEffects, ::customNukeEffects);
@@ -113,8 +129,11 @@ customNukeEffects()
     level maps\mp\h2_killstreaks\_emp::destroyActiveVehicles(level.nukeInfo.player);
     
     foreach(player in level.players) {
-        playerForward = VectorNormalize((anglestoforward(player.angles)[0], 
-                                      (anglestoforward(player.angles)[1], 0));
+        // Fixed vector syntax
+        forwardVec = anglestoforward(player.angles);
+        playerForward = (forwardVec[0], forwardVec[1], 0);
+        playerForward = VectorNormalize(playerForward);
+
         nukeEnt = spawn("script_model", 
                        player.origin + (playerForward * 5000));
         nukeEnt setModel("tag_origin");
