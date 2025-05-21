@@ -9,31 +9,84 @@ init()
 
 issupportedmap()
 {
-    supportedMaps = [
-        // COD 4 MAPS
-        "mp_convoy", "mp_backlot", "mp_bog", "mp_crash", "mp_crossfire", "mp_citystreets",
-        "mp_farm", "mp_overgrown", "mp_shipment", "mp_vacant", "mp_broadcast", "mp_carentan",
-        "mp_countdown", "mp_bloc", "mp_creek", "mp_killhouse", "mp_pipeline", "mp_strike",
-        "mp_showdown", "mp_cargoship", "mp_crash_snow", "mp_farm_spring", "mp_bog_summer",
-        // MW2 MAPS
-        "mp_afghan", "mp_derail", "mp_estate", "mp_favela", "mp_highrise", "mp_invasion",
-        "mp_checkpoint", "mp_quarry", "mp_rundown", "mp_rust", "mp_boneyard", "mp_nightshift",
-        "mp_subbase", "mp_terminal", "mp_underpass", "mp_brecourt", "mp_complex", "mp_compact",
-        "mp_stoorm", "mp_abandon", "mp_fuel2", "mp_trailerpark", 
-        // MW3 MAPS
-        "mp_alpha", "mp_bootleg", "mp_bravo", "mp_courtyard", "mp_dome", "mp_hardhat", "mp_lambeth", 
-        "mp_paris", "mp_underground"
-    ];
-
-    return (level.script in supportedMaps) ? 1 : 0;
+    switch ( level.script )
+    {
+        case "mp_convoy":
+        case "mp_backlot":
+        case "mp_bog":
+        case "mp_crash":
+        case "mp_crossfire":
+        case "mp_citystreets":
+        case "mp_farm":
+        case "mp_overgrown":
+        case "mp_shipment":
+        case "mp_vacant":
+        case "mp_broadcast":
+        case "mp_carentan":
+        case "mp_countdown":
+        case "mp_bloc":
+        case "mp_creek":
+        case "mp_killhouse":
+        case "mp_pipeline":
+        case "mp_strike":
+        case "mp_showdown":
+        case "mp_cargoship":
+        case "mp_crash_snow":
+        case "mp_farm_spring":
+        case "mp_bog_summer":
+        case "mp_afghan":
+        case "mp_derail":
+        case "mp_estate":
+        case "mp_favela":
+        case "mp_highrise":
+        case "mp_invasion":
+        case "mp_checkpoint":
+        case "mp_quarry":
+        case "mp_rundown":
+        case "mp_rust":
+        case "mp_boneyard":
+        case "mp_nightshift":
+        case "mp_subbase":
+        case "mp_terminal":
+        case "mp_underpass":
+        case "mp_brecourt":
+        case "mp_complex":
+        case "mp_compact":
+        case "mp_stoorm":
+        case "mp_abandon":
+        case "mp_fuel2":
+        case "mp_trailerpark":
+        case "mp_alpha":
+        case "mp_bootleg":
+        case "mp_bravo":
+        case "mp_courtyard":
+        case "mp_dome":
+        case "mp_hardhat":
+        case "mp_lambeth":
+        case "mp_paris":
+        case "mp_underground":
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 issupportedmode()
 {
-    // No Hardpoint, may cause issues
-    supportedModes = [ "dom", "conf", "war", "dm", "sd", "sab", "koth", "gun" ];
-
-    return (level.gametype in supportedModes) ? 1 : 0;
+    switch ( level.gametype )
+    {
+        case "dom":
+        case "conf":
+        case "war":
+        case "dm":
+        case "sd":
+        case "sab":
+        case "koth":
+        case "gun":
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 uselegacyspawning()
